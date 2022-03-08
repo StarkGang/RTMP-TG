@@ -65,8 +65,17 @@ async def stream_now(c, m):
     p = await ffmpeg_rtmp_stream(url, key, input_str)
     GC_S[m.chat.id] = p
     await m.edit("<b>Streaming to telegram...</b>")
-    await p.wait()
-    await m.edit("<b>Stream ended</b>")
+    st_time = time.perf_counter()
+    stdout, stderror = await p.wait()
+    if stderror:
+        stderror = stderror.decode("utf-8")
+    if stdout:
+        stdout = stdout.decode("utf-8")
+    end_time = round(time.perf_counter() - st_time, 2)
+    if (end_time < 10) and (p.returncode != 0) and (stderror):
+        logging.error(stderror)
+        return await m.edit("</code>Stream Ended too quickly also, some errors were detected. please check your logs to know more</code>")
+    await m.edit(f"<b>Stream ended</b> in __{end_time}ms !__")
 
 @ubbot_client.on_message(filters.command("stop", prefixes="!") & filters.me)
 async def stop_pro(c, m):
