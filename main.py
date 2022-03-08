@@ -49,7 +49,7 @@ async def stream_now(c, m):
         del GC_S[m.chat.id]
     try:
         await try_to_create_gp_call(c, m.chat.id)
-    except BaseException as e:
+    except Exception as e:
         return await m.edit(f"<b>Error While making a group call</b> \n<b>Error:</b> <code>{e}</code>")
     try:
         url, key = await get_rmtp_key_and_url(c, m.chat.id)
