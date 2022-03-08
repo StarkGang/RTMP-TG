@@ -5,9 +5,11 @@ Play streams in your chats using this userbot !
 > **Python:** `python3`  
 > **FFmpeg:** `ffmpeg`  
 > **Pyrogram:** `pyrogram`  
+> **Youtube Dl :** `youtube_dl` - (optional)
 
 # How to run?
 > run `pip install -r requirements.txt`  
 > fill your vars in `local.env`
 > run `python3 main.py`  
-> Now test your userbot with `!ping`
+> Now play using `!stream (url)`
+> Njoy!

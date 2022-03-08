@@ -7,6 +7,8 @@ from pyrogram.raw.functions.phone import *
 from monkeypatched_method import *
 from pyrogram.raw.functions.phone import GetGroupCallStreamRtmpUrl, GetGroupCall
 from run_ffmpeg_process import ffmpeg_rtmp_stream
+from pyrogram.raw.functions import Ping
+import time
 
 ubbot_client = Client(STRING_SESSION, api_id, api_hash)
 
@@ -29,6 +31,13 @@ async def get_rmtp_key_and_url(c, chat_id):
     return c.url, c.key
 
 GC_S = {}
+
+@ubbot_client.on_message(filters.command("ping", "!") & filters.me)
+async def ping_bot(c, m):
+    st_time = time.perf_counter()
+    await c.send(Ping(ping_id=9999999))
+    end_ = round((time.perf_counter() - st_time)  * 1000, 2)
+    await m.edit(f"**PONG!** \n**Time Taken :** `{end_}ms`")
 
 @ubbot_client.on_message(filters.command("stream", prefixes="!") & filters.me)
 async def stream_now(c, m):
