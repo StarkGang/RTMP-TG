@@ -1,9 +1,9 @@
 from pyrogram.types import Message
 from typing import Union
-from utils import *
+from _utils import *
 
 @monkeypatch(Message)
-class utils_:
+class _utils_:
     def __init__(self) -> None:
         super().__init__()
 

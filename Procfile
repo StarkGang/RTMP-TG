@@ -1,0 +1,1 @@
+rmtptg: python main.py

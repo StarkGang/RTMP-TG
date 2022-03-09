@@ -33,6 +33,7 @@ async def get_rmtp_key_and_url(c, chat_id):
 GC_S = {}
 
 @ubbot_client.on_message(filters.command("ping", "!") & filters.me)
+@sudo_wrap
 async def ping_bot(c, m):
     st_time = time.perf_counter()
     await c.send(Ping(ping_id=9999999))
@@ -40,6 +41,7 @@ async def ping_bot(c, m):
     await m.edit(f"**PONG!** \n**Time Taken :** `{end_}ms`")
 
 @ubbot_client.on_message(filters.command("stream", prefixes="!") & filters.me)
+@sudo_wrap
 async def stream_now(c, m):
     input_str = m.input_str
     if not input_str:
@@ -78,6 +80,7 @@ async def stream_now(c, m):
     await m.edit(f"<b>Stream ended</b> in __{end_time}ms !__")
 
 @ubbot_client.on_message(filters.command("stop", prefixes="!") & filters.me)
+@sudo_wrap
 async def stop_pro(c, m):
     if m.chat.id in GC_S:
         GC_S[m.chat.id].send_signal(signal.SIGTERM)

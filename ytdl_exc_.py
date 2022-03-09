@@ -1,5 +1,5 @@
 from youtube_dl import YoutubeDL, extractor
-from utils import *
+from _utils import *
 
 ytdl_ = YoutubeDL({
     "format": "best",
