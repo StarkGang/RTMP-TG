@@ -1,3 +1,4 @@
 git+https://github.com/Altruix/pyrogram
 tgcrypto
 youtube_dl
+python-dotenv
