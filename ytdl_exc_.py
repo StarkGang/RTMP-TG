@@ -19,4 +19,4 @@ def is_supported(url): # https://stackoverflow.com/a/61489622
 
 async def get_direct_link(url: str):
     if await is_supported(url): return (await extract_info_ytdl(url)).get('link')
-    return url
+    return url # if not supported.

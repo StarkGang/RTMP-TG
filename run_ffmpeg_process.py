@@ -8,7 +8,7 @@ yt_installed = True
 try:
     import youtube_dl
     from ytdl_exc_ import get_direct_link
-except ImportError: # import issue
+except ImportError: # ytdl is not installed
     yt_installed = False
 
 
