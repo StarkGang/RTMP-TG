@@ -32,15 +32,15 @@ async def get_rmtp_key_and_url(c, chat_id):
 
 GC_S = {}
 
-@ubbot_client.on_message(filters.command("ping", "!") & filters.me)
+@ubbot_client.on_message(filters.command("ping", [".", "/", "!"]))
 @sudo_wrap
 async def ping_bot(c, m):
     st_time = time.perf_counter()
     await c.send(Ping(ping_id=9999999))
     end_ = round((time.perf_counter() - st_time)  * 1000, 2)
-    await m.edit(f"**PONG!** \n**Time Taken :** `{end_}ms`")
+    await m.edit(f"<b>PONG!</b> \n<b>Time Taken :</b> <code>{end_}ms</code>")
 
-@ubbot_client.on_message(filters.command("stream", prefixes="!") & filters.me)
+@ubbot_client.on_message(filters.command("stream", prefixes=[".", "/", "!"]))
 @sudo_wrap
 async def stream_now(c, m):
     input_str = m.input_str
@@ -79,7 +79,7 @@ async def stream_now(c, m):
         return await m.edit("</code>Stream Ended too quickly also, some errors were detected. please check your logs to know more</code>")
     await m.edit(f"<b>Stream ended</b> in __{end_time}ms !__")
 
-@ubbot_client.on_message(filters.command("stop", prefixes="!") & filters.me)
+@ubbot_client.on_message(filters.command("stop", prefixes=["!", ".", "/"]))
 @sudo_wrap
 async def stop_pro(c, m):
     if m.chat.id in GC_S:

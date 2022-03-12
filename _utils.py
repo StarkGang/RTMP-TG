@@ -21,9 +21,9 @@ def sudo_wrap(func_):
     async def wrapper_f(client, message: Message):
         if not (message or message.from_user):
             return
-        if (message.from_user.is_self or (SUDO_USERS and SUDO_USERS == "all")):
+        if ((message.from_user.is_self) or (SUDO_USERS and SUDO_USERS == "all")):
             return await func_(client, message)
-        elif SUDO_USERS and message.from_user.id in SUDO_USERS:
+        elif ((SUDO_USERS) and (message.from_user.id in SUDO_USERS)):
             return await func_(client, message)
     return wrapper_f
 
